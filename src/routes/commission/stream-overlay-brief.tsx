@@ -35,7 +35,6 @@ const LAYOUT: {
 		tone: "#6f6250",
 	},
 	{ name: "Mouse-hand|camera", x: 0, y: 1067, w: 358, h: 373, tone: "#6f6250" },
-	{ name: "Map info", x: 1556, y: 0, w: 533, h: 200, tone: "#8f7a56" },
 	{ name: "Discord guests", x: 2114, y: 45, w: 422, h: 139, tone: "#a08558" },
 ];
 
@@ -113,7 +112,7 @@ export default function StreamOverlayBrief() {
 		<SpecDocument
 			kind="Artist brief"
 			title="Wind Waker stream overlay"
-			summary="Everything you need to design the overlay for my Momentum Mod bunny-hopping stream: the six elements it contains, what each one is for, how each one behaves live, and what would help me build your design."
+			summary="Everything you need to design the overlay for my Momentum Mod bunny-hopping stream: the five elements it contains, what each one is for, how each one behaves live, and what would help me build your design."
 			meta={[
 				["From", "Simen"],
 				["For", "The overlay artist"],
@@ -134,7 +133,7 @@ export default function StreamOverlayBrief() {
 					Everything in this brief is a starting point, not a specification: the
 					layout, the shapes, the sizes, the colours and how each element looks
 					are all yours to decide. The only requirement I have is that the
-					animation isn&rsquo;t noisy (§10).
+					animation isn&rsquo;t noisy (§9).
 				</Note>
 
 				<Subsection id="about-read" number="1.1" title="How to read it">
@@ -144,11 +143,11 @@ export default function StreamOverlayBrief() {
 							(colours, image treatment, type).
 						</li>
 						<li>
-							Sections 4 to 9 are the six stream elements, one each: what it is
+							Sections 4 to 8 are the five stream elements, one each: what it is
 							for, what it shows today, its states and what would help.
 						</li>
 						<li>
-							Section 10 is how things move; section 11 is how to hand the work
+							Section 9 is how things move; section 10 is how to hand the work
 							over.
 						</li>
 					</ul>
@@ -177,10 +176,10 @@ export default function StreamOverlayBrief() {
 					<p>
 						Each element is a separate layer in OBS that updates by itself: keys
 						light up as I press them, guests appear when they join the voice
-						chat, the map card changes when I load a new map. So it helps most
+						chat. So it helps most
 						to get your art{" "}
 						<strong>as separate parts, in each of their states</strong>, rather
-						than as one finished image. Photos, avatars, map images, names and
+						than as one finished image. Photos, avatars, names and
 						numbers are filled in live by code, so the design is about the
 						frames, surfaces and states around them rather than the content
 						itself.
@@ -244,8 +243,8 @@ export default function StreamOverlayBrief() {
 							Recording
 						</span>
 						A minute of the stream with today&rsquo;s placeholder elements in
-						place: keys lighting up, the mouse movement, both cameras, the map
-						card and the guest slots.
+						place: keys lighting up, the mouse movement, both cameras and the
+						guest slots.
 					</figcaption>
 				</figure>
 				<Figures>
@@ -268,7 +267,7 @@ export default function StreamOverlayBrief() {
 				<LayoutMap />
 				<Note title="Sizes in this brief">
 					All sizes are in canvas pixels at 2560 × 1440. Designing at that size
-					(or larger for raster art, see §11) keeps everything sharp on stream.
+					(or larger for raster art, see §10) keeps everything sharp on stream.
 				</Note>
 			</Section>
 
@@ -355,7 +354,7 @@ export default function StreamOverlayBrief() {
 					title="Photos and avatars"
 				>
 					<p>
-						People&rsquo;s avatars and map images are shown{" "}
+						People&rsquo;s avatars are shown{" "}
 						<strong>greyscaled, then tinted with the brown</strong> so they sit
 						inside the palette whatever their original colours. That is done in
 						code, so design around a brown-tinted photo, not a colourful one.
@@ -367,7 +366,7 @@ export default function StreamOverlayBrief() {
 						Today everything uses the system sans-serif in bold. A Wind
 						Waker-flavoured display font would be welcome, as long as its
 						licence allows use on a live stream and in a web page (the overlay
-						runs in OBS as web pages). Numbers (tiers, distances) work best when
+						runs in OBS as web pages). Numbers (such as the distance) work best when
 						easy to read at a glance.
 					</p>
 				</Subsection>
@@ -485,7 +484,7 @@ export default function StreamOverlayBrief() {
 						<li>
 							A subtle idle loop (breathing, the baton swaying) is welcome. If
 							he reacts to key presses, the reaction should keep up with my
-							hands (§10).
+							hands (§9).
 						</li>
 					</ul>
 				</Subsection>
@@ -543,7 +542,7 @@ export default function StreamOverlayBrief() {
 							<strong>It needs to read instantly.</strong> A jump tap lasts
 							about 60 ms, and strafe keys switch several times a second, so the
 							pressed state works best when it shows in a single frame, without
-							a build-up animation (§10).
+							a build-up animation (§9).
 						</li>
 						<li>
 							Several keys are often pressed at once (e.g. A + Space), so it
@@ -820,51 +819,7 @@ export default function StreamOverlayBrief() {
 				</Subsection>
 			</Section>
 
-			<Section id="map" number="9" title="Map info">
-				<Subsection id="map-what" number="9.1" title="What it is for">
-					<p>
-						Tells viewers which map I am playing and how hard it is. Maps are
-						rated in tiers from 1 (easy) upwards.
-					</p>
-					<p>
-						This element is the most open of all. It doesn&rsquo;t need the
-						map&rsquo;s image in the background; just the map name and tier is
-						totally fine. Hell, I am open for just getting rid of map info
-						entirely.
-					</p>
-					<Figure
-						src={`${IMG}/now-map.png`}
-						alt="Placeholder map card: map image with bhop_3muddz and Tier 7 bottom left"
-						tag="Placeholder"
-					>
-						The current map&rsquo;s image, name and tier.
-					</Figure>
-				</Subsection>
-				<Subsection id="map-shows" number="9.2" title="How it works today">
-					<ul>
-						<li>
-							A card in the top strip, about 530 × 200 px on the canvas, with
-							the map&rsquo;s own screenshot filling it (cropped to fit).
-						</li>
-						<li>
-							The map name, bold and bright white, bottom left, and the tier
-							(&ldquo;Tier 7&rdquo;) below it, smaller and dimmer. A dark
-							gradient behind the text keeps it readable on bright images.
-						</li>
-						<li>
-							Names vary a lot in length (<code>bhop_x</code> to{" "}
-							<code>bhop_appaisaniceman_extended</code>); the name shrinks to
-							fit, up to a maximum size.
-						</li>
-						<li>
-							It changes by itself when I load a new map. Maps without an image
-							show only the name and &ldquo;Tier ?&rdquo;.
-						</li>
-					</ul>
-				</Subsection>
-			</Section>
-
-			<Section id="motion" number="10" title="Motion">
+			<Section id="motion" number="9" title="Motion">
 				<p>
 					Every movement is a reaction to something live. For each element,
 					describe it as <strong>in</strong> (when it starts),{" "}
@@ -893,11 +848,6 @@ export default function StreamOverlayBrief() {
 							"Join and leave can be expressive (0.3–0.6 s). Talking: subtle, ~150 ms.",
 						],
 						[
-							"Map info",
-							"Map changes",
-							"Can be expressive; it happens a few times per stream.",
-						],
-						[
 							"Cameras",
 							"Camera on or off",
 							"Optional; a short fade is enough.",
@@ -909,22 +859,22 @@ export default function StreamOverlayBrief() {
 					anything tied to them (keys, mouse) is best kept quick, small and
 					never lagging behind: streams run at 30 or 60 frames per second, so a
 					key tap may only be on screen for two frames. Save expressive motion
-					for rare moments like guests joining and maps changing, where Wind
+					for rare moments like guests joining, where Wind
 					Waker&rsquo;s bouncy menu feel is a great fit.
 				</Note>
 				<p>
 					Formats for motion: a written description as above for anything code
-					draws (keys, pearls, map card); <strong>Rive</strong> or{" "}
+					draws (keys, pearls); <strong>Rive</strong> or{" "}
 					<strong>Lottie</strong> for richer vector animations; a numbered PNG
 					sequence for frame-by-frame effects; WebM with transparency only for
 					non-interactive pieces such as a &ldquo;starting soon&rdquo; loop.
 				</p>
 			</Section>
 
-			<Section id="handover" number="11" title="Handover">
+			<Section id="handover" number="10" title="Handover">
 				<Subsection
 					id="handover-formats"
-					number="11.1"
+					number="10.1"
 					title="Formats that work best"
 				>
 					<ul>
@@ -943,7 +893,7 @@ export default function StreamOverlayBrief() {
 						<li>The palette as named colour values (§3.1).</li>
 					</ul>
 				</Subsection>
-				<Subsection id="handover-checklist" number="11.2" title="Checklist">
+				<Subsection id="handover-checklist" number="10.2" title="Checklist">
 					<Table
 						head={["Element", "Parts", "States"]}
 						rows={[
@@ -974,11 +924,6 @@ export default function StreamOverlayBrief() {
 								"Empty, quiet, talking",
 							],
 							[
-								"Map info",
-								"Whatever you keep: card, name and tier style",
-								"Depends on the design",
-							],
-							[
 								"Characters",
 								"Link, Salvatore, Makar and Medli (each its own layer)",
 								"At rest, plus any idle or reaction loops",
@@ -986,7 +931,7 @@ export default function StreamOverlayBrief() {
 						]}
 					/>
 				</Subsection>
-				<Subsection id="handover-rights" number="11.3" title="Files and rights">
+				<Subsection id="handover-rights" number="10.3" title="Files and rights">
 					<ul>
 						<li>
 							The editable source files (Figma, Illustrator, Affinity, Procreate
@@ -1002,7 +947,7 @@ export default function StreamOverlayBrief() {
 				</Subsection>
 			</Section>
 
-			<Section id="questions" number="12" title="Open questions">
+			<Section id="questions" number="11" title="Open questions">
 				<p>Things I would like your opinion on:</p>
 				<ol>
 					<li>

@@ -242,11 +242,6 @@ export default function StreamOverlaySpec() {
 									Local clock; <code>stream.online</code> for uptime
 								</>,
 							],
-							[
-								"Stat panel",
-								"PB, rank, world record on current map",
-								"Game or leaderboard API (§5.5)",
-							],
 						]}
 					/>
 				</Subsection>
@@ -377,11 +372,6 @@ export default function StreamOverlaySpec() {
 						Momentum Mod is listed as game <code>o1y3gzo6</code> with full-game
 						categories per mode (Surf, BHop, BHop HL1, Climb, RJ, SJ, AHop,
 						Conc, Defrag), no per-level boards.
-					</p>
-					<p>
-						Because the game&rsquo;s culture is per-map records,
-						Momentum&rsquo;s own leaderboard (§5.5) is the more useful source
-						for a stat panel.
 					</p>
 				</Subsection>
 			</Section>
@@ -813,14 +803,10 @@ export default function StreamOverlaySpec() {
 							<strong>Alerts</strong> — follow, sub, raid, bits.
 						</li>
 						<li>
-							<strong>Map cards</strong> — the map being run now and the one up
-							next: tier, name and thumbnail, greyscaled and tinted brown.
-						</li>
-						<li>
 							<strong>Speakers</strong> — three circular slots for me and up to
 							two co-hosts or guests, one per pearl (Din, Farore, Nayru). An
 							empty slot shows its pearl; a taken slot shows the speaker&rsquo;s
-							picture, tinted like the map images, with the pearl overlapping
+							picture, greyscaled and tinted brown, with the pearl overlapping
 							its bottom edge.
 						</li>
 					</ul>
@@ -832,17 +818,12 @@ export default function StreamOverlaySpec() {
 					title="Time maps: routing"
 				>
 					<p>
-						While routing, viewers mostly need context: what the map is and what
-						the route is worth.
+						While routing, viewers mostly need context: what the route is
+						worth.
 					</p>
 					<Table
 						head={["Stat", "Shows", "Source"]}
 						rows={[
-							[
-								"Map card",
-								"Map name, my PB, my rank, the WR",
-								"Momentum web API via the local proxy (§5.5)",
-							],
 							[
 								"Routed time",
 								"The time the finished route is worth, e.g. “routed for ~1:24”",
@@ -974,7 +955,7 @@ export default function StreamOverlaySpec() {
 							attempts?&rdquo;
 						</li>
 						<li>
-							Starting soon / BRB scenes with the map rotation for the stream.
+							Starting soon / BRB scenes.
 						</li>
 					</ul>
 				</Subsection>
