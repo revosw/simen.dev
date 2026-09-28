@@ -1,3 +1,59 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Stream overlay palette (routes/overlay), sampled from the Wind Waker overlay design.
+   --overlay-lit (a pressed key) is not from the design yet. */
+:root {
+	--overlay-brown: #4a3f33;
+	--overlay-tan: #a08558;
+	/* A pressed key: the same tan, clearly more saturated (HSL saturation 29% -> 65%). */
+	--overlay-tan-pressed: #cd902b;
+	--overlay-edge: #cdb5b8;
+	--overlay-lit: #efe3c8;
+	--overlay-text: #f3e9dc;
+}
+
+/* Long-form typography for spec documents (components/spec). */
+@layer components {
+	.spec {
+		font-size: 16px;
+		line-height: 1.75;
+
+		& h2 {
+			@apply mb-5 scroll-mt-16 text-xl font-semibold tracking-tight text-neutral-900;
+		}
+		& h3 {
+			@apply mt-10 mb-3 scroll-mt-16 text-base font-semibold text-neutral-900;
+		}
+		& h4 {
+			@apply mt-6 mb-2 text-sm font-semibold text-neutral-800;
+		}
+		& p {
+			@apply my-4;
+		}
+		& ul,
+		& ol {
+			@apply my-4 pl-5;
+		}
+		& ul {
+			@apply list-disc marker:text-neutral-300;
+		}
+		& ol {
+			@apply list-decimal marker:text-neutral-400;
+		}
+		& li {
+			@apply my-1.5 pl-1;
+		}
+		& table ul {
+			@apply my-0;
+		}
+		& a {
+			@apply text-neutral-900 underline decoration-neutral-300 underline-offset-2 hover:decoration-neutral-900;
+		}
+		& code {
+			@apply rounded bg-neutral-100 px-1 py-0.5 font-mono text-[0.85em] text-neutral-800;
+		}
+		& strong {
+			@apply font-semibold text-neutral-900;
+		}
+	}
+}

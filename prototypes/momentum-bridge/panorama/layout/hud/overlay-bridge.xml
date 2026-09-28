@@ -1,0 +1,8 @@
+<root>
+	<scripts>
+		<include type="module" src="file://{scripts}/hud/overlay-bridge.ts" />
+	</scripts>
+
+	<!-- Invisible: this panel only exists to run the bridge script inside the HUD. -->
+	<Panel hittest="false" hittestchildren="false" />
+</root>

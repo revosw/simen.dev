@@ -1,0 +1,34 @@
+<!doctype html>
+<!-- Side-by-side colour schemes for the outline characters next to the key display.
+     Open via the dev server: /prototypes/outline-art/compare.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Outline colour schemes</title>
+		<style>
+			body { margin: 0; display: grid; font: 600 18px system-ui, sans-serif; }
+			section { display: flex; align-items: flex-end; gap: 24px; padding: 48px 32px 32px; position: relative; }
+			h2 { position: absolute; top: 12px; left: 32px; margin: 0; font-size: 16px; }
+			img { display: block; }
+			.keys { height: 420px; }
+			.medli { height: 470px; }
+			.makar { height: 220px; }
+			.blue { background: #0d131f; color: #8b9bbd; }
+			.brown { background: #1a1511; color: #a08558; }
+		</style>
+	</head>
+	<body>
+		<section class="blue">
+			<h2>Blue: #0d131f / lines #2b3954</h2>
+			<img class="keys" src="compare-keys-blue.png" alt="" />
+			<img class="medli" src="medli-outline.png" alt="" />
+			<img class="makar" src="makar-outline.png" alt="" />
+		</section>
+		<section class="brown">
+			<h2>Brown: #1a1511 / lines #4a3f33</h2>
+			<img class="keys" src="compare-keys-brown.png" alt="" />
+			<img class="medli" src="medli-brown-outline.png" alt="" />
+			<img class="makar" src="makar-brown-outline.png" alt="" />
+		</section>
+	</body>
+</html>

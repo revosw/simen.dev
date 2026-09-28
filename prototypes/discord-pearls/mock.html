@@ -1,0 +1,41 @@
+<!doctype html>
+<!--
+	Test page for pearls.css: a copy of Discord StreamKit's voice widget markup as
+	documented by community CSS (ul/li voiceState with data-userid, img avatar with
+	avatarSpeaking while talking, div user > span name). Class suffixes are made up,
+	as StreamKit's are generated. Clicking an avatar toggles "speaking".
+	Open via the Vite dev server: http://localhost:5173/prototypes/discord-pearls/mock.html
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>StreamKit mock</title>
+		<link rel="stylesheet" href="./pearls.css" />
+	</head>
+	<body>
+		<div class="Voice_voiceContainer__x1">
+			<ul class="Voice_voiceStates__x2">
+				<li class="Voice_voiceState__x3" data-userid="100000000000000001">
+					<img class="Voice_avatar__x4" src="https://cdn.discordapp.com/embed/avatars/0.png?size=256" />
+					<div class="Voice_user__x5"><span class="Voice_name__x6">Simen</span></div>
+				</li>
+				<li class="Voice_voiceState__x3" data-userid="100000000000000002">
+					<img class="Voice_avatar__x4 Voice_avatarSpeaking__x7" src="https://cdn.discordapp.com/embed/avatars/1.png?size=256" />
+					<div class="Voice_user__x5"><span class="Voice_name__x6">Alex</span></div>
+				</li>
+				<li class="Voice_voiceState__x3" data-userid="100000000000000003">
+					<img class="Voice_avatar__x4" src="https://cdn.discordapp.com/embed/avatars/2.png?size=256" />
+					<div class="Voice_user__x5"><span class="Voice_name__x6">Kim</span></div>
+				</li>
+				<li class="Voice_voiceState__x3" data-userid="100000000000000004">
+					<img class="Voice_avatar__x4" src="https://cdn.discordapp.com/embed/avatars/3.png?size=256" />
+					<div class="Voice_user__x5"><span class="Voice_name__x6">Fourth person (hidden)</span></div>
+				</li>
+			</ul>
+		</div>
+		<script>
+			for (const img of document.querySelectorAll("img"))
+				img.addEventListener("click", () => img.classList.toggle("Voice_avatarSpeaking__x7"));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,137 @@
+/*
+ * Pearl speaker slots for Discord StreamKit's voice widget.
+ * Paste into the OBS Browser Source's "Custom CSS" field (see README.md).
+ *
+ * Up to three people in the voice channel get a slot each: Din, Farore, Nayru, in
+ * the order StreamKit lists them. Avatars are greyscaled and tinted brown; the pearl
+ * under each avatar is dim, and lights up while that person is talking.
+ *
+ * StreamKit's class names carry generated suffixes (e.g. Voice_avatar__1a2b3), so
+ * everything is matched with [class*="..."].
+ */
+
+:root {
+	/* Keep in sync with --overlay-brown / --overlay-text in src/app.css. */
+	--brown: #4a3f33;
+	--text: #f3e9dc;
+	--din: #d8432f;
+	--farore: #3ea34c;
+	--nayru: #3a7fd8;
+	--size: 96px;
+	--pearl-size: 32px;
+}
+
+html,
+body {
+	margin: 0;
+	background: transparent;
+	overflow: hidden;
+}
+
+ul[class*="voiceStates"] {
+	display: flex;
+	gap: 24px;
+	margin: 0;
+	padding: 16px 16px 32px;
+	list-style: none;
+}
+
+li[class*="voiceState"] {
+	position: relative;
+	/* Keeps the tint blend (::before) inside the slot. */
+	isolation: isolate;
+	width: var(--size);
+	height: var(--size);
+	margin: 0;
+	padding: 0;
+	--pearl: var(--din);
+}
+li[class*="voiceState"]:nth-child(2) {
+	--pearl: var(--farore);
+}
+li[class*="voiceState"]:nth-child(3) {
+	--pearl: var(--nayru);
+}
+li[class*="voiceState"]:nth-child(n + 4) {
+	display: none;
+}
+
+/*
+ * Optional: pin a person to a pearl by Discord user ID instead of list order
+ * (Discord settings > Advanced > Developer Mode, then right-click them > Copy User ID).
+ * li[data-userid="123456789012345678"] { --pearl: var(--din); }
+ */
+
+/* Avatar: a greyscale circle. Also resets StreamKit's own speaking border and size. */
+img[class*="avatar"] {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	object-fit: cover;
+	border: 2px solid color-mix(in srgb, var(--text) 70%, transparent);
+	border-radius: 50%;
+	filter: grayscale(1);
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+}
+img[class*="avatarSpeaking"] {
+	border-color: color-mix(in srgb, var(--text) 70%, transparent);
+}
+
+/* Brown tint over the greyscale avatar: keeps its light and dark, takes the brown's hue. */
+li[class*="voiceState"]::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	border-radius: 50%;
+	background: var(--brown);
+	mix-blend-mode: color;
+	pointer-events: none;
+}
+
+/* The name box becomes the pearl, overlapping the avatar's bottom edge. Unlit: the pearl
+   colour mixed into the brown. */
+div[class*="user"] {
+	position: absolute;
+	left: 50%;
+	bottom: calc(var(--pearl-size) / -2 + 4px);
+	z-index: 2;
+	width: var(--pearl-size);
+	height: var(--pearl-size);
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	transform: translateX(-50%);
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 35% 30%, #fff3 0 8%, transparent 30%),
+		radial-gradient(
+			circle at 50% 55%,
+			color-mix(in srgb, var(--pearl) 35%, var(--brown)),
+			color-mix(in srgb, color-mix(in srgb, var(--pearl) 35%, var(--brown)), black 45%)
+		);
+	box-shadow:
+		0 0 0 2px var(--brown),
+		0 4px 6px -1px rgb(0 0 0 / 0.3);
+	font-size: 0;
+}
+div[class*="user"] * {
+	display: none;
+}
+
+/* Lit layer, faded in while the avatar has StreamKit's speaking class. */
+div[class*="user"]::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 35% 30%, #fff9 0 8%, transparent 30%),
+		radial-gradient(circle at 50% 55%, var(--pearl), color-mix(in srgb, var(--pearl), black 45%));
+	opacity: 0;
+	transition: opacity 150ms;
+}
+img[class*="avatarSpeaking"] ~ div[class*="user"]::after {
+	opacity: 1;
+}

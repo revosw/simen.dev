@@ -1,5 +1,4 @@
-import { A } from "@solidjs/router";
-import { FileFormatVisualizer } from "~/components/FileFormatVisualizer";
+import { FileFormatVisualizer } from "../components/FileFormatVisualizer";
 
 export default function Home() {
   return (

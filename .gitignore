@@ -1,10 +1,5 @@
 
 dist
-.solid
-.output
-.vercel
-.netlify
-.vinxi
 
 # Environment
 .env
@@ -26,3 +21,10 @@ gitignore
 # System Files
 .DS_Store
 Thumbs.db
+
+# Speaker pictures for the stream overlay (prototypes/momentum-bridge)
+prototypes/momentum-bridge/avatars/*
+!prototypes/momentum-bridge/avatars/.gitkeep
+
+# Mouse recordings (prototypes/input-overlay-mock/record.mjs)
+prototypes/input-overlay-mock/mouse-recording.json
